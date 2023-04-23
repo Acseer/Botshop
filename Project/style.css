@@ -70,6 +70,7 @@ input {
 input:focus {
     border-color: #db5d5d;
 }
+
 <script>
         let tg = window.Telegram.WebApp;
         let buy = document.getElementById('buy');
