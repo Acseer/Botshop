@@ -84,15 +84,18 @@
 </head>
 <body>
     <div id="main">
-        <h1>Онлайн магазин</h1>
-        <p>Кроссы</p>
-        <img src="C:\Users\Светлана\PycharmProjects\BotProject\Иконка.png">
+        <h1>Trainers Shop</h1>
+        <p>Здесь ты можешь купить оригинальные кроссовки по очень сладким ценам!</p>
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fru.freepik.com%2Fpremium-vector%2Fsneaker-shop-logo-shoes-sign_32913445.htm&psig=AOvVaw05BK7Q-5ryjQfANVvP2GqB&ust=1682359159806000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJD8zLTKwP4CFQAAAAAdAAAAABAE">
         <button id="buy">Купить</button>
     </div>
     <form id="form">
+        <h1>Оформление покупки</h1>
         <input type="text" placeholder="Имя" id="user_name">
         <input type="text" placeholder="Email" id="user_email">
         <input type="text" placeholder="Телефон" id="user_phone">
+        <input type="text" placeholder="Номер модели кроссовок" id="user_cross">
+        <div id="error"></div>
         <button id="order">Оформить</button>
     </form>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -109,27 +112,33 @@
         });
 
         order.addEventListener('click', () => {
-            document.getElementById('error').innerText = ' ';
-            let name =  document.getElementById('user_name').value;
-            let email =  document.getElementById('user_email').value;
-            let phone =  document.getElementById('user_phone').value;
+            document.getElementById('error').innerText = '';
+            let name = document.getElementById('user_name').value;
+            let email = document.getElementById('user_email').value;
+            let phone = document.getElementById('user_phone').value;
+            let cross = document.getElementById('user_cross').value;
             if(name.lenght == 0) {
-                document.getElementById('error').innerText = 'Ошибка в номере телефона';
+                document.getElementById('error').innerText = 'Ошибка в имени';
                 return;
             }
             if(email.lenght == 0) {
-                document.getElementById('error').innerText = 'Ошибка в номере телефона';
+                document.getElementById('error').innerText = 'Ошибка в email';
                 return;
             }
             if(phone.lenght < 11) {
                 document.getElementById('error').innerText = 'Ошибка в номере телефона';
                 return;
             }
+            if(cross.lenght == 0) {
+                document.getElementById('error').innerText = 'Введите номер модели кроссовок';
+                return;
+            }
 
             let data = {
                 name: name,
                 email: email,
-                phone: phone
+                phone: phone,
+                cross: cross
             }
             tg.sendData(JSON.stringify(data));
 
