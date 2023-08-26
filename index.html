@@ -94,6 +94,7 @@
         <input type="text" placeholder="Имя" id="user_name">
         <input type="text" placeholder="Email" id="user_email">
         <input type="text" placeholder="Телефон" id="user_phone">
+        <input type="text" placeholder="Ваш телеграм id" id="user_tgid">
         <input type="text" placeholder="Модель кроссовок" id="user_cross">
         <div id="error"></div>
         <button id="order">Оформить</button>
@@ -116,6 +117,7 @@
             let name = document.getElementById('user_name').value;
             let email = document.getElementById('user_email').value;
             let phone = document.getElementById('user_phone').value;
+            let tgid = document.getElementById('user_tgid').value;
             let cross = document.getElementById('user_cross').value;
             if(name.lenght == 0) {
                 document.getElementById('error').innerText = 'Ошибка в имени';
@@ -129,8 +131,11 @@
                 document.getElementById('error').innerText = 'Ошибка в номере телефона';
                 return;
             }
+            if(tgid.lenght == 0) {
+                document.getElementById('error').innerText = 'Ошибка в телеграм id';
+                return;
             if(cross.lenght == 0) {
-                document.getElementById('error').innerText = 'Введите номер модели кроссовок';
+                document.getElementById('error').innerText = 'Введите модель кроссовок';
                 return;
             }
 
@@ -138,6 +143,7 @@
                 name: name,
                 email: email,
                 phone: phone,
+                tgid: tgid,
                 cross: cross
             }
             tg.sendData(JSON.stringify(data));
